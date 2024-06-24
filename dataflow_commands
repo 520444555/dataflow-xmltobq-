@@ -1,0 +1,24 @@
+python script: /mnt/etl/dataflow/xml2bq_dataflow.py
+ 
+C:\Users\43721934\Desktop\Dataflow\Batch
+ 
+ 
+Direct Runner:
+python3 /mnt/etl/dataflow/xml2bq_dataflow.py --temp_location gs://fsmiaspdev-dataproc-user-amit/temp
+
+
+Dataflow Runner:
+
+python3 /mnt/etl/dataflow/xml2bq_dataflow.py --no_use_public_ips --service_account_email terraform-jenkins-usr@hsbc-11597902-fsmiasp-dev.iam.gserviceaccount.com --job_name 'amxml' --staging_location gs://fsmiaspdev-dataproc-user-amit/dataflow --project hsbc-11597902-fsmiasp-dev --region asia-east2 --worker_zone asia-east2-b --subnet regions/asia-east2/subnetworks/dataflow-asia-east2 --runner DataFlowRunner --temp_location gs://fsmiaspdev-dataproc-user-amit/dataflow --max_num_workers 1 --num_workers 1 --disk_size_gb 50 --dataflow_kms_key projects/hsbc-6320774-kms-dev/locations/asia-east2/keyRings/hsbc-11597902-fsmiasp-dev/cryptoKeys/dataFlow --save_main_session true --requirements_file /mnt/etl/dataflow/requirements.txt
+
+Template Creation:
+
+python3 /mnt/etl/dataflow/xml2bq_dataflow.py --no_use_public_ips --service_account_email terraform-jenkins-usr@hsbc-11597902-fsmiasp-dev.iam.gserviceaccount.com --job_name 'am-xml-template-creation' --staging_location gs://fsmiaspdev-dataproc-user-amit/dataflow --project hsbc-11597902-fsmiasp-dev --region asia-east2 --worker_zone asia-east2-b --subnet regions/asia-east2/subnetworks/dataflow-asia-east2 --runner DataFlowRunner --temp_location gs://fsmiaspdev-dataproc-user-amit/dataflow --max_num_workers 1 --num_workers 1 --disk_size_gb 50 --dataflow_kms_key projects/hsbc-6320774-kms-dev/locations/asia-east2/keyRings/hsbc-11597902-fsmiasp-dev/cryptoKeys/dataFlow --save_main_session true --requirements_file /mnt/etl/dataflow/requirements.txt --template_location gs://fsmiaspdev-dataproc-user-amit/dataflow/am-xml-template
+
+Gcloud Command:
+
+gcloud dataflow jobs run am-xml-template --gcs-location gs://fsmiaspdev-dataproc-user-amit/dataflow/am-xml-template --region asia-east2 --max-workers 2 --num-workers 2 --worker-zone asia-east2-b --service-account-email terraform-jenkins-usr@hsbc-11597902-fsmiasp-dev.iam.gserviceaccount.com --staging-location gs://fsmiaspdev-dataproc-user-amit/dataflow --dataflow-kms-key projects/hsbc-6320774-kms-dev/locations/asia-east2/keyRings/hsbc-11597902-fsmiasp-dev/cryptoKeys/dataFlow --subnetwork regions/asia-east2/subnetworks/dataflow-asia-east2 --network hsbc-default-network --disable-public-ips --additional-experiments disable_runner_v2_reason=template
+
+
+
+
